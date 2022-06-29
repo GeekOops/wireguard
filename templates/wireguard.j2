@@ -1,0 +1,19 @@
+[Interface]
+Address = {{ address }}
+ListenPort = 51871
+PrivateKey = {{ private_key }}
+
+{% for host in groups['all'] %}
+{% if hostvars[host]['inventory_hostname'] != inventory_hostname %}
+[Peer]
+# {{ hostvars[host]['inventory_hostname'] }}
+PublicKey = {{ hostvars[host]['public_key'] }}
+AllowedIPs = {{ hostvars[host]['allowed_ips'] }}
+{% if hostvars[host]['endpoint'] is defined %}
+Endpoint = {{ hostvars[host]['endpoint'] }}
+{% endif %}
+PersistentKeepalive = 25
+
+{% endif %}
+{% endfor %}
+

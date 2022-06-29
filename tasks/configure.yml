@@ -1,0 +1,19 @@
+---
+- name: Generate configuration file
+  ansible.builtin.template:
+    src: wireguard.j2
+    dest: "/etc/wireguard/pdostal.conf"
+    owner: root
+    group: root
+    mode: '0700'
+- name: Do not count this as a failure
+  ansible.builtin.command: "systemctl start wg-quick@pdostal"
+  ignore_errors: yes
+- name: Do not count this as a failure1
+  ansible.builtin.command: "journalctl --no-tail -u wg-quick@pdostal"
+  register: journalctl
+  ignore_errors: yes
+- name: journalctl
+  debug:
+    var: journalctl.stdout_lines
+  #notify: Reconfigure the tunnel

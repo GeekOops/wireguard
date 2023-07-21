@@ -3,6 +3,7 @@ name: 'Yamllint'
 on:
   - pull_request
   - push
+
 jobs:
   yamllint:
     name: 'Yamllint'

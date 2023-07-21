@@ -1,0 +1,19 @@
+---
+name: 'ansible-test'
+on:
+  - pull_request
+  - push
+
+jobs:
+  - name: Perform integration testing with ansible-test
+    uses: ansible-community/ansible-test-gh-action@release/v1
+    with:
+      testing-type: integration
+  - name: Perform sanity testing with ansible-test
+    uses: ansible-community/ansible-test-gh-action@release/v1
+    with:
+      testing-type: sanity
+  - name: Perform unit testing with ansible-test
+    uses: ansible-community/ansible-test-gh-action@release/v1
+    with:
+      testing-type: units

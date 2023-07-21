@@ -1,7 +1,6 @@
 ---
 - name: Gather facts
   ansible.builtin.setup:
-
 - name: Print some debug information
   vars:
     msg: |
@@ -10,7 +9,6 @@
         Ansible OS family: {{ ansible_os_family }}
   debug:
     msg: "{{ msg.split('\n') }}"
-
 # Install
 - name: Install latest version on Archlinux
   community.general.pacman:
@@ -28,7 +26,6 @@
     name: wireguard-tools
     state: present
   when: ansible_os_family == "Suse"
-
 # Generate configuration file
 - name: Generate configuration file
   ansible.builtin.template:
@@ -39,11 +36,9 @@
     mode: '0700'
     backup: true
   notify: Reload wireguard
-
 # Enable and start
 - name: Make sure wireguard is enabled and started
   ansible.builtin.service:
     name: "wg-quick@{{ network }}"
     enabled: true
     state: started
-

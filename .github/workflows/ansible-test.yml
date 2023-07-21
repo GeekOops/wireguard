@@ -5,15 +5,33 @@ on:
   - push
 
 jobs:
-  - name: Perform integration testing with ansible-test
-    uses: ansible-community/ansible-test-gh-action@release/v1
-    with:
-      testing-type: integration
-  - name: Perform sanity testing with ansible-test
-    uses: ansible-community/ansible-test-gh-action@release/v1
-    with:
-      testing-type: sanity
-  - name: Perform unit testing with ansible-test
-    uses: ansible-community/ansible-test-gh-action@release/v1
-    with:
-      testing-type: units
+  ansible-integration:
+    name: 'integration'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: Perform integration testing with ansible-test
+        uses: ansible-community/ansible-test-gh-action@release/v1
+        with:
+          testing-type: integration
+  ansible-sanity:
+    name: 'sanity'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: Perform sanity testing with ansible-test
+        uses: ansible-community/ansible-test-gh-action@release/v1
+        with:
+          testing-type: sanity
+  ansible-units:
+    name: 'units'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: Perform unit testing with ansible-test
+        uses: ansible-community/ansible-test-gh-action@release/v1
+        with:
+          testing-type: units

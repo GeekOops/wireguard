@@ -1,0 +1,9 @@
+---
+namespace: "pdostal"
+name: "wireguard"
+description: "Deploy wireguard config"
+version: "0.1.0"
+readme: "README.md"
+authors:
+  - "Pavel Dostal <pdostal@sh.cvut.cz>"
+repository: "https://github.com/pdostal/wireguard/"

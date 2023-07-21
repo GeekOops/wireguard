@@ -1,6 +1,9 @@
+# {{ network }} Wireguard network
+# This file is managed by Ansible!
+
 [Interface]
 Address = {{ address }}
-ListenPort = 51871
+ListenPort = {{ port }}
 PrivateKey = {{ private_key }}
 
 {% for host in groups['all'] %}

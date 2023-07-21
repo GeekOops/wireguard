@@ -1,5 +1,5 @@
 ---
-- name: Reconfigure the tunnel
+- name: Reload wireguard
   ansible.builtin.service:
-    name: wg-quick@pdostal
-    state: restarted
+    name: "wg-quick@{{ network }}"
+    state: reloaded

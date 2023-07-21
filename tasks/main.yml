@@ -1,3 +1,49 @@
 ---
-- ansible.builtin.import_tasks: prepare.yml
-- ansible.builtin.import_tasks: configure.yml
+- name: Gather facts
+  ansible.builtin.setup:
+
+- name: Print some debug information
+  vars:
+    msg: |
+        Ansible Distribution: {{ ansible_distribution }}
+        Ansible Dist version: {{ ansible_distribution_version }}
+        Ansible OS family: {{ ansible_os_family }}
+  debug:
+    msg: "{{ msg.split('\n') }}"
+
+# Install
+- name: Install latest version on Archlinux
+  community.general.pacman:
+    name:
+      - wireguard-tools
+    state: present
+  when: ansible_distribution == 'Archlinux'
+- name: Install latest version on Debian
+  ansible.builtin.apt:
+    name: wireguard
+    state: present
+  when: ansible_distribution == 'Debian'
+- name: Install latest version on openSUSE
+  community.general.zypper:
+    name: wireguard-tools
+    state: present
+  when: ansible_os_family == "Suse"
+
+# Generate configuration file
+- name: Generate configuration file
+  ansible.builtin.template:
+    src: wireguard.j2
+    dest: "/etc/wireguard/{{ network }}.conf"
+    owner: root
+    group: root
+    mode: '0700'
+    backup: true
+  notify: Reload wireguard
+
+# Enable and start
+- name: Make sure wireguard is enabled and started
+  ansible.builtin.service:
+    name: "wg-quick@{{ network }}"
+    enabled: true
+    state: started
+

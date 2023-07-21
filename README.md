@@ -2,6 +2,12 @@
 
 This role tends to be simple.
 
+## How it works
+
+ * Every member of the network knows everyone else.
+ * Only hosts from `automated` group are configured.
+
+
 ## How to
 
 Create `main.yml`

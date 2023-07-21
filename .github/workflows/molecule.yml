@@ -1,24 +1,14 @@
 ---
-name: Test deployment
-'on':
-  pull_request:
-  push:
-  schedule:
-    # Run every Wednesday at 01:42
-    - cron: "42 1 * * 3"
-
+name: 'Yamllint'
+on:
+  - pull_request
+  - push
 jobs:
-  lint:
-    name: Lint
+  yamllint:
+    name: 'Yamllint'
     runs-on: ubuntu-latest
     steps:
-      - name: Check out codebase
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: pip3 install yamllint
-      - name: Lint repository
-        run: yamllint .
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Yamllint'
+        uses: karancode/yamllint-github-action@master

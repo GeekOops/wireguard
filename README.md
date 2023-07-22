@@ -1,6 +1,7 @@
 # pdostal.wireguard
 
-This role tends to be simple.
+This is simple Wireguard Ansible role.
+It's available on [Ansible Galaxy](https://galaxy.ansible.com/pdostal/wireguard) as `pdostal.wireguard`.
 
 ## How it works
 

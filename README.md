@@ -1,7 +1,7 @@
-# pdostal.wireguard
+# geekoops.wireguard
 
-This is simple Wireguard Ansible role.
-It's available on [Ansible Galaxy](https://galaxy.ansible.com/pdostal/wireguard) as `pdostal.wireguard`.
+This is simple GeekoOps Wireguard Ansible role.
+It's available on [Ansible Galaxy](https://galaxy.ansible.com/geekoops/wireguard) as `geekoops.wireguard`.
 
 ## How it works
 

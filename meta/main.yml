@@ -1,10 +1,10 @@
 ---
 galaxy_info:
   role_name: wireguard
-  namespace: pdostal
+  namespace: geekoops
   author: Pavel Dostál
   description: Configurable wireguard host
-  company: pdostal
+  company: geekoops
   license: license MIT
   min_ansible_version: "2.9"
   platforms:
